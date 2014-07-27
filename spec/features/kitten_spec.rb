@@ -20,6 +20,21 @@ feature 'Kittens' do
     end
   end
 
+  scenario 'User must select a category upon categorization' do
+    user = create_user email: "user@example.com"
+    Category.create!(name: "Cutest!")
+    Kitten.create!(image: "http://i.imgur.com/tOzb0dUb.jpg")
+
+    login(user)
+
+    # wrap each image in a link with a class
+    find(".kitten-link").click
+    click_on "Add category"
+
+    expect(page).to have_content("Category can't be blank")
+
+  end
+
   def login(user)
     visit root_path
     click_on "Login"
