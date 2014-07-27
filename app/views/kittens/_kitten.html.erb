@@ -1,3 +1,12 @@
 <div class="kitten">
-  <%= image_tag kitten.image %>
+  <%= link_to image_tag(kitten.image), new_kitten_categorizations_path(kitten), class: 'kitten-link' %>
+  <% if kitten.categories.length > 0 %>
+  <ul>
+      <% kitten.categories.each do |category| %>
+    <li>
+      <%= category.name %>
+    </li>
+      <% end %>
+  </ul>
+  <% end %>
 </div>

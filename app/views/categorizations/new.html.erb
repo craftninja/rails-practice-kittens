@@ -1,0 +1,9 @@
+<h1>Kittens!</h1>
+
+<div class="kittens-container">
+  <%= image_tag @kitten.image %>
+  <%= form_for [@kitten, @categorization] do |f| %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, :prompt => true %>
+    <%= f.submit 'Add category' %>
+  <% end %>
+</div>
